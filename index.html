@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+Music page
+-->
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>Cogote</title>
+
+<!-- Use mobile-aware viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> 
+
+<link rel="stylesheet" href="style.css">
+<!-- Load any supplemental Javascript libraries here -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.2/seedrandom.js"></script>
+
+<!-- Constructible EventTarget polyfill — Only Chrome 64+ supports constructible EventTarget objects natively -->
+<script src="https://unpkg.com/event-target@latest/min.js"></script>
+</head>      
+<script src="decipher.js"></script>
+<script src="get_url.js"></script>
+<script src="search.js"></script>
+
+
+<script src="util.js"></script>
+<body>
+<div id="search_bar">
+    <input id="search_query" type="text" value="Search...">
+</div>
+<div id="result_container">
+    <div id="result_1" class="result">
+        <p id="song_1" class="song_info">Ambiente</p>
+        <p id="artist_1" class="artist_info">J Balvin</p>
+        <p id="views_1" class="count">5M</p>
+    </div>
+    <div id="result_2" class="result">
+        <p id="song_2" class="song_info">Ambiente</p>
+        <p id="artist_2" class="artist_info">J Balvin</p>
+        <p id="views_2" class="count">5M</p>
+    </div>
+    <div id="result_3" class="result">
+        <p id="song_3" class="song_info">Ambiente</p>
+        <p id="artist_3" class="artist_info">J Balvin</p>
+        <p id="views_3" class="count">5M</p>
+    </div>
+    <div id="result_4" class="result">
+        <p id="song_4" class="song_info">Ambiente</p>
+        <p id="artist_4" class="artist_info">J Balvin</p>
+        <p id="views_4" class="count">5M</p>
+    </div>
+</div>
+<div id="playlist">
+    <div id="playlist_1" class="playlist"></div>
+</div>
+<div id="music_list">
+    <div id="music_entry_1" class="music_entry">
+            <p id="artist_1"></p>
+            <p id="song_name_1"></p>
+            <button type="button" id="add_1" class="add_button"></button> 
+    </div>
+</div>
+
+
+<div id="music_control">
+    <button type="button" id="previous" class="control_button">
+            <img src="left_arrow.png" class="img">
+    <button type="button" id="play" class="control_button">
+        <img src="play_triangle.png" class="img">
+    </button>
+    <button type="button" id="pause" class="control_button">
+        <img src="pause_button.png" class="img">
+    </button>
+    <button type="button" id="next" class="control_button">
+        <img src="right_arrow.png" class="img">
+    </button>
+    </button>
+</div>
+
+
+</body>
+
+<script src="main.js"></script>
+</html>
