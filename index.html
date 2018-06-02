@@ -33,37 +33,47 @@ Music page
     <div id="result_1" class="result">
         <p id="song_1" class="song_info">Ambiente</p>
         <p id="artist_1" class="artist_info">J Balvin</p>
-        <p id="views_1" class="count">5M</p>
     </div>
     <div id="result_2" class="result">
         <p id="song_2" class="song_info">Ambiente</p>
         <p id="artist_2" class="artist_info">J Balvin</p>
-        <p id="views_2" class="count">5M</p>
     </div>
     <div id="result_3" class="result">
         <p id="song_3" class="song_info">Ambiente</p>
         <p id="artist_3" class="artist_info">J Balvin</p>
-        <p id="views_3" class="count">5M</p>
     </div>
     <div id="result_4" class="result">
         <p id="song_4" class="song_info">Ambiente</p>
         <p id="artist_4" class="artist_info">J Balvin</p>
-        <p id="views_4" class="count">5M</p>
     </div>
 </div>
 <div id="playlist">
-    <div id="playlist_1" class="playlist"></div>
+    <select id="playlist_select">
+        <option value="All songs" class="options">All songs</option>
+    </select>
+    <p id="playlist_title">Playlists</p>
 </div>
 <div id="music_list">
-    <div id="music_entry_1" class="music_entry">
-            <p id="artist_1"></p>
-            <p id="song_name_1"></p>
-            <button type="button" id="add_1" class="add_button"></button> 
+    <div id="music_entry_0" class="music_entry">
+            <p id="artista_0" class="artist_name">Artist</p>
+            <p id="cancion_0" class="song_name">Song</p>
+            <button type="button" id="del_0" class="del_button">
+                <img src="red_cross.png" class="img">
+            </button> 
+            <button type="button" id="add_0" class="add_button">
+                <img src="green_plus.png" class="add_img">
+            </button>
     </div>
 </div>
 
 
 <div id="music_control">
+    <p id="curr_song">Nothing Playing</p>
+    <p id="curr_artist">Artist</p>
+    <button type="button" id="add" class="control_button">
+        <img src="plus.png" class="add_img">
+    </button>
+
     <button type="button" id="previous" class="control_button">
             <img src="left_arrow.png" class="img">
     <button type="button" id="play" class="control_button">

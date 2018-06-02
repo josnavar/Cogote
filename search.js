@@ -1,6 +1,6 @@
 //Given a query search for video url
 
-var server_base="http://127.0.0.1:5000/search?tag=";
+var server_base="https://dull-crab-62.localtunnel.me/search?tag=";
 function stuff(data){
     return data;
 }

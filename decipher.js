@@ -71,7 +71,7 @@ function get_stuff(de){
     return all_fns;    
 }
 
-var js_url="http://127.0.0.1:5000/js_query?url=";
+var js_url="https://dull-crab-62.localtunnel.me/js_query?url=";
 function get_js_player(url,callback,signature){
     return new Promise(function (resolve,reject){
         if (js_player==null){
