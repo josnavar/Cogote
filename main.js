@@ -25,7 +25,7 @@ function add_song_tiles(song,artist,i,event_response){
     //Update grid location
     curr_tile.style.gridRow=i;
     //Add new listeners
-    curr_tile.addEventListener("touchstart",event_response);
+    curr_tile.addEventListener("click",event_response);
     music_list.appendChild(curr_tile);
 }
 function load_from_local(event_response){
@@ -190,17 +190,17 @@ Util.events(document, {
 
         load_from_local(play_tile);
 
-        Util.one("[id='play']").addEventListener("touchstart",play);
-        Util.one("[id='pause']").addEventListener("touchstart",pause);
+        Util.one("[id='play']").addEventListener("click",play);
+        Util.one("[id='pause']").addEventListener("click",pause);
 
-        Util.one("[id='search_bar']").addEventListener("touchstart",set_up_search);
+        Util.one("[id='search_bar']").addEventListener("click",set_up_search);
         Util.one("[id='search_query']").addEventListener("keyup",request_search);
-        Util.one("[id='result_container']").addEventListener("touchstart",pull_media);
+        Util.one("[id='result_container']").addEventListener("click",pull_media);
 
         //Adding new songs to a playlist 
-        Util.one("[id='add']").addEventListener("touchstart",add_to_playlist);
+        Util.one("[id='add']").addEventListener("click",add_to_playlist);
 
-        Util.one(".music_entry").addEventListener("touchstart",play_tile);
+        Util.one(".music_entry").addEventListener("click",play_tile);
 
 	},
 
