@@ -159,6 +159,7 @@ Util.events(document, {
         }
         function play_tile(e){
             var song_id=e.path[0].id.split("_")[1];
+            console.log(e.path);
             var curr_playlist=document.getElementById("playlist_select").value;
             var list_of_songs=playlist_list[curr_playlist];
 
@@ -208,8 +209,8 @@ Util.events(document, {
 	"keydown": function(evt) {
     },
     // Click events arrive here
-	"mousedown": function(evt) {
-
+	"click": function(evt) {
+        
     },
 	"mousedown": function(evt) {
 
