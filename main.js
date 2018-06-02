@@ -123,7 +123,30 @@ Util.events(document, {
             }
         }
         async function request_search(e){
-            if (e.keyCode==13 || e.keyCode==20 || e.keyCode==190 | e.keyCode==110 ){
+            if (e.keyCode==13){
+                var query=document.getElementById("search_query").value;
+
+                var raw_data=await get_raw_data(query);
+                var url_names=raw_data[1];
+                for (var index=0;index<4;index++){
+                    var name=url_names[index];
+                    var arr=name.split("-");
+                    if (arr.length>1){
+                        document.getElementById("song_"+String(index+1)).innerHTML=arr[1];
+                        document.getElementById("artist_"+String(index+1)).innerHTML=arr[0]
+                    }
+                    else{
+                        document.getElementById("song_"+String(index+1)).innerHTML=arr[0];
+                        document.getElementById("artist_"+String(index+1)).innerHTML="Artist not Found";
+                    }
+                raw_media_links=raw_data[0];
+                document.getElementById("result_container").style.display="grid";
+                }
+            }
+        }
+        async function alt_request(e){
+            var check=document.getElementById("result_container").style.display;
+            if (check=="grid"){
                 var query=document.getElementById("search_query").value;
 
                 var raw_data=await get_raw_data(query);
@@ -195,6 +218,7 @@ Util.events(document, {
 
         Util.one("[id='search_bar']").addEventListener("mousedown",set_up_search);
         Util.one("[id='search_query']").addEventListener("keyup",request_search);
+        Util.one("[id='search_query']").addEventListener("mousedown",alt_request);
         Util.one("[id='result_container']").addEventListener("mousedown",pull_media);
 
         //Adding new songs to a playlist 
