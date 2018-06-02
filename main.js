@@ -145,8 +145,9 @@ Util.events(document, {
             }
         }
         async function pull_media(e){
-            console.log(e);
-            var song_id=e.path[0].id
+            
+            var song_id=e.target.attributes[0].id.split("_")[1];
+            console.log(song_id);
             var song_id=song_id[song_id.length-1];
             
             var post_media_link=await build_media_link(raw_media_links,song_id-1);
@@ -159,7 +160,7 @@ Util.events(document, {
             document.getElementById("curr_artist").innerHTML=document.getElementById("artist_"+String(song_id)).innerHTML;
         }
         function play_tile(e){
-            var song_id=e.path[0].id.split("_")[1];
+            var song_id=e.target.attributes[0].id.split("_")[1];
             var curr_playlist=document.getElementById("playlist_select").value;
             var list_of_songs=playlist_list[curr_playlist];
 
