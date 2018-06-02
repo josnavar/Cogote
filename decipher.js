@@ -71,7 +71,7 @@ function get_stuff(de){
     return all_fns;    
 }
 
-var js_url="https://kind-bat-84.localtunnel.me/js_query?url=";
+var js_url="https://orange-panda-44.localtunnel.me/js_query?url=";
 function get_js_player(url,callback,signature){
     return new Promise(function (resolve,reject){
         if (js_player==null){
