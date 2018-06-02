@@ -1,6 +1,6 @@
 //Given a query search for video url
 
-var server_base="https://orange-panda-44.localtunnel.me/search?tag=";
+var server_base="https://empty-yak-64.localtunnel.me/search?tag=";
 function stuff(data){
     return data;
 }
