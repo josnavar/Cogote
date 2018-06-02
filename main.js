@@ -25,7 +25,7 @@ function add_song_tiles(song,artist,i,event_response){
     //Update grid location
     curr_tile.style.gridRow=i;
     //Add new listeners
-    curr_tile.addEventListener("click",event_response);
+    curr_tile.addEventListener("touchstart",event_response);
     music_list.appendChild(curr_tile);
 }
 function load_from_local(event_response){
