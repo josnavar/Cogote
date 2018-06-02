@@ -204,7 +204,7 @@ Util.events(document, {
         //Adding new songs to a playlist 
         Util.one("[id='add']").addEventListener("click",add_to_playlist);
 
-        Util.one(".music_entry").addEventListener("click",play_tile);
+        //Util.one(".music_entry").addEventListener("click",play_tile);
 
 	},
 
