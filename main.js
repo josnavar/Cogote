@@ -194,7 +194,7 @@ Util.events(document, {
         Util.one("[id='pause']").addEventListener("mousedown",pause);
 
         Util.one("[id='search_bar']").addEventListener("mousedown",set_up_search);
-        Util.one("[id='search_query']").addEventListener("keyup",request_search);
+        Util.one("[id='search_query']").addEventListener("submit",request_search);
         Util.one("[id='result_container']").addEventListener("mousedown",pull_media);
 
         //Adding new songs to a playlist 
