@@ -146,7 +146,7 @@ Util.events(document, {
         }
         async function pull_media(e){
             
-            var song_id=e.target.attributes[0].id.split("_")[1];
+            var song_id=e.target.attributes.id.split("_")[1];
             console.log(song_id);
             var song_id=song_id[song_id.length-1];
             
