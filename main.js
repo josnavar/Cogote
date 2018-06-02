@@ -158,8 +158,8 @@ Util.events(document, {
             document.getElementById("curr_artist").innerHTML=document.getElementById("artist_"+String(song_id)).innerHTML;
         }
         function play_tile(e){
+            console.log(e);
             var song_id=e.path[0].id.split("_")[1];
-            console.log(e.path);
             var curr_playlist=document.getElementById("playlist_select").value;
             var list_of_songs=playlist_list[curr_playlist];
 
