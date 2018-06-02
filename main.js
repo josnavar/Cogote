@@ -123,7 +123,7 @@ Util.events(document, {
             }
         }
         async function request_search(e){
-            if (e.keyCode==13){
+            if (e.keyCode==13 || e.keyCode==115){
                 var query=document.getElementById("search_query").value;
 
                 var raw_data=await get_raw_data(query);
