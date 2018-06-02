@@ -71,7 +71,7 @@ body{
     grid-column: 1; 
     font-family: 'PT Sans', sans-serif;
     font-size: 3.5vh;
-    margin-top:0px;
+    margin:0px;
     -webkit-margin-before:0px;
     -webkit-margin-start: 0px;
     -webkit-margin-after:0px;
@@ -87,7 +87,7 @@ body{
     font-family: 'PT Sans', sans-serif;
     font-size: 2vh;
     margin-bottom:0px;
-    margin-top:0px;
+    margin:0px;
     text-align: center; 
 }
 
