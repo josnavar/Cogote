@@ -122,10 +122,6 @@ Util.events(document, {
                 search_elt.value="";
             }
         }
-        function update_result(i,){
-            var result_i=document.getElementById("song_"+String(i)).innerText;
-
-        }
         async function request_search(e){
             if (e.keyCode==13){
                 var query=document.getElementById("search_query").value;
