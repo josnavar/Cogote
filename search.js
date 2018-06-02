@@ -1,6 +1,6 @@
 //Given a query search for video url
 
-var server_base="https://empty-yak-64.localtunnel.me/search?tag=";
+var server_base="http://d1ab05d2.ngrok.io/search?tag=";
 function stuff(data){
     return data;
 }
