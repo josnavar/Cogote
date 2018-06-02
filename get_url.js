@@ -99,7 +99,7 @@ function preHTML(item){
     return [raw_url,raw_sig,raw_player,raw_clean];
 }
 
-var base_url="http://d1ab05d2.ngrok.io/query?url=";
+var base_url="https://serious-vampirebat-74.localtunnel.me/query?url=";
 //CORS BLOCKS HTML CONNECTIONS, connect to server and expect raw html to post 
 function get_html(url,callback){
     return new Promise(function (resolve,reject){
