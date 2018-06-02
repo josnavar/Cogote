@@ -121,6 +121,25 @@ Util.events(document, {
                 //Clear and get ready for new search
                 search_elt.value="";
             }
+            else{
+                var query=document.getElementById("search_query").value;
+
+                var raw_data=await get_raw_data(query);
+                var url_names=raw_data[1];
+                for (var index=0;index<4;index++){
+                    var name=url_names[index];
+                    var arr=name.split("-");
+                    if (arr.length>1){
+                        document.getElementById("song_"+String(index+1)).innerHTML=arr[1];
+                        document.getElementById("artist_"+String(index+1)).innerHTML=arr[0]
+                    }
+                    else{
+                        document.getElementById("song_"+String(index+1)).innerHTML=arr[0];
+                        document.getElementById("artist_"+String(index+1)).innerHTML="Artist not Found";
+                    }
+                raw_media_links=raw_data[0];
+                document.getElementById("result_container").style.display="grid";
+            }
         }
         async function request_search(e){
             if (e.keyCode==13){
