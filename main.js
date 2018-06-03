@@ -25,7 +25,7 @@ function add_song_tiles(song,artist,i,event_response){
     //Update grid location
     curr_tile.style.gridRow=i;
     //Add new listeners
-    curr_tile.addEventListener("touchstart",event_response);
+    curr_tile.addEventListener("click",event_response);
     music_list.appendChild(curr_tile);
 }
 function load_from_local(event_response){
@@ -67,6 +67,8 @@ Util.events(document, {
         var pause_button=document.getElementById("pause");
 
         var raw_media_links=[];
+        var backup_url="";
+
 
         async function get_raw_data(query){
             var medias=[]
@@ -104,21 +106,10 @@ Util.events(document, {
             if (check){
                 current_song.src=source;
             }
-
-            // current_song.onerror=function(){
-            //     var url_error_base="https://serious-vampirebat-74.localtunnel.me/report?error=";
-            //     var message= String(current_song.error.message)+";"+String(current_song.error.code);
-            //     var req_error = new XMLHttpRequest();
-            //     req_error.open("GET",url_error_base+message,true);
-            //     req.send(null);
-            // }
-            current_song.play();
-
-
-
             play_button.style.display="none";
             pause_button.style.display="inline";
-            //Turn play button into pause button
+            
+            return current_song.play();
         }
         function pause(){
             current_song.pause();
@@ -188,6 +179,15 @@ Util.events(document, {
             //Update now playing containers
             document.getElementById("curr_song").innerHTML=document.getElementById("song_"+String(song_id)).innerHTML;
             document.getElementById("curr_artist").innerHTML=document.getElementById("artist_"+String(song_id)).innerHTML;
+            backup_url=raw_media_links[0][song_id-1];
+            
+        }
+        async function refresh_tile_data(tile_data){
+            var link=tile_data[3];
+            var new_query=[[link],[""]]
+            var post_media_link=await build_media_link(new_query,0);
+            
+            return [tile_data[0],tile_data[1],post_media_link[0],link];
         }
         function play_tile(e){
             var song_id=e.target.id.split("_")[1];
@@ -199,14 +199,24 @@ Util.events(document, {
             var artist_name=song_pack[1];
             var song_url=song_pack[2];
 
+
             //Update now playing containers
             document.getElementById("curr_song").innerHTML=document.getElementById("song_"+String(song_id)).innerHTML;
             document.getElementById("curr_artist").innerHTML=document.getElementById("artist_"+String(song_id)).innerHTML;
-            // console.log("SONG PACK");
-            // console.log(song_pack);
-            // console.log("$$$$$$$$$$$$$$$$$$$$$");
 
-            play(song_url,true);
+           
+            play(song_url,true).then(function(){
+            }).catch(async function(error){
+                //Request new media link && update localstorage about the new link
+                refreshed_data=await refresh_tile_data(song_pack);
+                play(refreshed_data[2],true);
+                list_of_songs[song_id-1]=refreshed_data;
+                playlist_list[curr_playlist]=list_of_songs;
+                localStorage.setItem("playlists",JSON.stringify(playlist_list));
+            });
+            
+
+            
         }
         function add_to_playlist(){
             //Check current selected playlist in selector and add current song into entry.
@@ -218,7 +228,7 @@ Util.events(document, {
             var url_playing=current_song.src;
 
             //Add to local to storage
-            var to_storage=[song_playing,artist_playing,url_playing];
+            var to_storage=[song_playing,artist_playing,url_playing,backup_url];
             list_of_songs.push(to_storage);
             playlist_list[curr_playlist]=list_of_songs;
             localStorage.setItem("playlists",JSON.stringify(playlist_list));
@@ -240,7 +250,7 @@ Util.events(document, {
         //Adding new songs to a playlist 
         Util.one("[id='add']").addEventListener("touchstart",add_to_playlist);
 
-        Util.one(".music_entry").addEventListener("touchstart",play_tile);
+        Util.one(".music_entry").addEventListener("click",play_tile);
 
 	},
 
