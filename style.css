@@ -20,6 +20,7 @@ body{
     border-color: black;
     border-width:1px;
     background-color:#D7BFA7;
+    cursor:pointer;
 }
 [id="search_query"]{
     color:gray;
@@ -36,6 +37,7 @@ body{
     border:0px;
     padding-bottom:0px;
     padding-left:0px;
+    cursor:pointer;
 }
 
 [id="result_container"]{
@@ -49,6 +51,7 @@ body{
     height: 100%;
     width: 100%;
     z-index:10;
+    cursor:pointer;
 }
 
 [id="result_1"]{
@@ -149,6 +152,7 @@ body{
     border-color: white;
     height: 100%;
     overflow-x:visible;
+    cursor:pointer;
 }
 .artist_name{
     grid-row: 2;
@@ -256,6 +260,7 @@ body{
     position:absolute;
     left:50%;
     top:25%;
+    cursor:pointer;
 }
 [id="play"]{
     grid-column:2;
@@ -263,6 +268,7 @@ body{
     position:absolute;
     left:22%;
     top:0%;
+    cursor:pointer;
 }
 [id="previous"]{
     grid-column:1;
@@ -292,6 +298,7 @@ body{
     top:0%;
     display: none;
     grid-row:3;
+    cursor:pointer;
 }
 
 /*ANIMATION SECTION $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$

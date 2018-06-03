@@ -104,7 +104,17 @@ Util.events(document, {
             if (check){
                 current_song.src=source;
             }
+
+            // current_song.onerror=function(){
+            //     var url_error_base="https://serious-vampirebat-74.localtunnel.me/report?error=";
+            //     var message= String(current_song.error.message)+";"+String(current_song.error.code);
+            //     var req_error = new XMLHttpRequest();
+            //     req_error.open("GET",url_error_base+message,true);
+            //     req.send(null);
+            // }
             current_song.play();
+
+
 
             play_button.style.display="none";
             pause_button.style.display="inline";
