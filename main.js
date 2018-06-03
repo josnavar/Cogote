@@ -201,8 +201,8 @@ Util.events(document, {
 
 
             //Update now playing containers
-            document.getElementById("curr_song").innerHTML=document.getElementById("song_"+String(song_id)).innerHTML;
-            document.getElementById("curr_artist").innerHTML=document.getElementById("artist_"+String(song_id)).innerHTML;
+            document.getElementById("curr_song").innerHTML=document.getElementById("cancion_"+String(song_id)).innerHTML;
+            document.getElementById("curr_artist").innerHTML=document.getElementById("artista_"+String(song_id)).innerHTML;
 
            
             play(song_url,true).then(function(){
