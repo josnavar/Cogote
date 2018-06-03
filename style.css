@@ -44,6 +44,7 @@ html{
     cursor:pointer;
 }
 
+
 [id="result_container"]{
     display: none;
     grid-row:2/4;
@@ -255,9 +256,9 @@ html{
     background-color:transparent;
     
 }
-.control_button:active{
+/* .control_button:active{
     filter: opacity(0);
-}
+} */
 [id="add"]{
     grid-column:3;
     grid-row:3;
@@ -307,6 +308,6 @@ html{
 
 /*ANIMATION SECTION $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
-button:active{
+/* button:active{
     filter: opacity(0);
-}
+} */
