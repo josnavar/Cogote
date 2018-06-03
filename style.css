@@ -7,7 +7,7 @@ body{
     display: grid;
     grid-template-rows: 15% 15% 25% 25% 20%;
     grid-template-columns: 100%;
-    width:98vw;
+    width:100vw;
     height:100vh;
     margin:0px;
     overflow-x: auto;
@@ -95,8 +95,6 @@ body{
     grid-row:2;
     grid-column: 1;
     height:100%;
-    border-style:solid;
-    border-color: black;
     background-color:var(--background_color);
 
     display: grid;
@@ -118,7 +116,7 @@ body{
     font-family: 'PT Sans', sans-serif;
     font-size: 4vh;
     background-color:var(--search_color);
-    width:97vw;
+    width:100vw;
 }
 .options{
     text-align:center;
@@ -127,8 +125,6 @@ body{
     grid-row:3/5;
     grid-column: 1;
     height:100%;
-    border-style:solid;
-    border-color: black;
     display:grid;
     grid-template-rows: repeat(var(--num_songs),10vh);
     grid-template-columns: 100%;
@@ -280,7 +276,7 @@ body{
     width: 10vw;
 }
 .add_img{
-    height: 5vh;
+    height: 4vh;
 }
 [id="pause"]{
     grid-column:2;
