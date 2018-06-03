@@ -149,7 +149,6 @@ Util.events(document, {
             var song_id=e.target.id.split("_")[1];
             var song_id=song_id[song_id.length-1];
             
-            console.log(raw_media_links);
 
             var post_media_link=await build_media_link(raw_media_links,song_id-1);
             document.getElementById("result_container").style.display="none";
@@ -169,6 +168,10 @@ Util.events(document, {
             var song_name=song_pack[0];
             var artist_name=song_pack[1];
             var song_url=song_pack[2];
+
+            console.log("SONG PACK");
+            console.log(song_pack);
+            console.log("$$$$$$$$$$$$$$$$$$$$$");
 
             play(song_url,true);
         }
