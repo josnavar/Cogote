@@ -47,9 +47,7 @@ function load_from_local(event_response){
 
 
         document.documentElement.style.setProperty("--num_songs",song_list.length);
-
         }
-        
     }
     else{
         //Create a new entry.
@@ -91,8 +89,11 @@ Util.events(document, {
             else{
                 var unscrambled_sig=await unscramble(data[1],data[2]);
             }
-            console.log(unscrambled_sig);
             var media_url=data[0]+"&signature="+unscrambled_sig;
+            console.log ("THIS IS QUERIED MEDIA URL");
+            console.log(media_url);
+            console.log (name);
+            console.log("###########################");
             return [media_url,name]; 
         }
         async function play(source,check){
@@ -148,6 +149,8 @@ Util.events(document, {
             var song_id=e.target.id.split("_")[1];
             var song_id=song_id[song_id.length-1];
             
+            console.log(raw_media_links);
+
             var post_media_link=await build_media_link(raw_media_links,song_id-1);
             document.getElementById("result_container").style.display="none";
             play(post_media_link[0],true);
