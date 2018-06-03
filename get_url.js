@@ -51,7 +51,6 @@ var url_tag='^url=([^"]+)'
 function preHTML(item){
     var player_string=item;
     item=String(JSON.parse(item));
-    console.log(item);
     var reg1=new RegExp(p1);
     var reg2=new RegExp(audio1);
     var reg3=new RegExp(player_tag);

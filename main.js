@@ -169,9 +169,12 @@ Util.events(document, {
             var artist_name=song_pack[1];
             var song_url=song_pack[2];
 
-            console.log("SONG PACK");
-            console.log(song_pack);
-            console.log("$$$$$$$$$$$$$$$$$$$$$");
+            //Update now playing containers
+            document.getElementById("curr_song").innerHTML=document.getElementById("song_"+String(song_id)).innerHTML;
+            document.getElementById("curr_artist").innerHTML=document.getElementById("artist_"+String(song_id)).innerHTML;
+            // console.log("SONG PACK");
+            // console.log(song_pack);
+            // console.log("$$$$$$$$$$$$$$$$$$$$$");
 
             play(song_url,true);
         }
