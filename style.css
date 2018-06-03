@@ -8,7 +8,7 @@ body{
     grid-template-rows: 15% 15% 25% 25% 20%;
     grid-template-columns: 100%;
     width:98vw;
-    height:98vh;
+    height:100vh;
     margin:0px;
     overflow-x: auto;
 }
@@ -118,7 +118,7 @@ body{
     font-family: 'PT Sans', sans-serif;
     font-size: 4vh;
     background-color:var(--search_color);
-    width:98vw;
+    width:97vw;
 }
 .options{
     text-align:center;
@@ -281,7 +281,6 @@ body{
 }
 .add_img{
     height: 5vh;
-    width:5vw;
 }
 [id="pause"]{
     grid-column:2;
