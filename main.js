@@ -145,6 +145,26 @@ Util.events(document, {
                 }
             }
         }
+        async function request_search_2(e){
+            var query=document.getElementById("search_query").value;
+
+            var raw_data=await get_raw_data(query);
+            var url_names=raw_data[1];
+            for (var index=0;index<4;index++){
+                var name=url_names[index];
+                var arr=name.split("-");
+                if (arr.length>1){
+                    document.getElementById("song_"+String(index+1)).innerHTML=arr[1];
+                    document.getElementById("artist_"+String(index+1)).innerHTML=arr[0]
+                }
+                else{
+                    document.getElementById("song_"+String(index+1)).innerHTML=arr[0];
+                    document.getElementById("artist_"+String(index+1)).innerHTML="Artist not Found";
+                }
+            raw_media_links=raw_data[0];
+            document.getElementById("result_container").style.display="grid";
+            }
+        }
         async function pull_media(e){
             var song_id=e.target.id.split("_")[1];
             var song_id=song_id[song_id.length-1];
@@ -203,6 +223,7 @@ Util.events(document, {
         Util.one("[id='pause']").addEventListener("mousedown",pause);
 
         Util.one("[id='search_bar']").addEventListener("mousedown",set_up_search);
+        Util.one("[id='perform_search']").addEventListener("mousedown",request_search_2);
         Util.one("[id='search_query']").addEventListener("keyup",request_search);
         Util.one("[id='result_container']").addEventListener("mousedown",pull_media);
 
