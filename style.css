@@ -11,6 +11,10 @@ body{
     height:100vh;
     margin:0px;
     overflow-x: auto;
+    touch-action: auto;
+}
+html{
+    touch-action: auto;
 }
 [id="search_bar"]{
     grid-row:1;
