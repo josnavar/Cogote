@@ -125,7 +125,6 @@ body{
     font-family: 'PT Sans', sans-serif;
     font-size: 4vh;
     background-color:var(--search_color);
-    width:100vw;
 }
 .options{
     text-align:center;
@@ -149,7 +148,6 @@ body{
     background-color: grey;
     border-color: white;
     height: 100%;
-    width:100vw;
     overflow-x:visible;
 }
 .artist_name{
