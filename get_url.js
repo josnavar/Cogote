@@ -41,11 +41,11 @@ function grab_func1(index,source,start,target){
 }
 //Find quality of interest and then scan until url is found, decode url extract signature and then decipher it
 var audio1="type=audio"
-var sig_tag="^s=(.+)"
-var clean_s_tag="^sig=(.+)"
+var sig_tag='^s=([^"]+)'
+var clean_s_tag='^sig=([^"]+)'
 var player_head="https://s.ytimg.com"
 var player_tag="/yts/jsbin/player";
-var url_tag="^url=(.+)"
+var url_tag='^url=([^"]+)'
 
 
 function preHTML(item){
