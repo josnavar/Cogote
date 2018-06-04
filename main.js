@@ -123,10 +123,9 @@ Util.events(document, {
 
         function set_up_search(){
             var search_elt=document.getElementById("search_query");
-            if (search_elt.value=="Search..."){
-                //Clear and get ready for new search
-                search_elt.value="";
-            }
+            //Clear and get ready for new search
+            search_elt.value="";
+            
         }
         async function request_search(e){
             if (e.keyCode==13){
