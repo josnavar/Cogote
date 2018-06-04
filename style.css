@@ -8,13 +8,14 @@ body{
     grid-template-rows: 15% 15% 25% 25% 20%;
     grid-template-columns: 85% 17%;
     width:98vw;
-    height:100vh;
+    height:100%;
     margin:0px;
     overflow-x: auto;
     touch-action: auto;
 }
 html{
     touch-action: auto;
+    height:100%;
 }
 [id="search_bar"]{
     grid-row:1;
