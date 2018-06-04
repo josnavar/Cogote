@@ -125,6 +125,8 @@ Util.events(document, {
             var search_elt=document.getElementById("search_query");
             //Clear and get ready for new search
             search_elt.value="";
+            document.getElementById("result_container").style.display="none";
+
             
         }
         async function request_search(e){
