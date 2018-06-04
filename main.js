@@ -107,7 +107,8 @@ Util.events(document, {
             if (check){
                 current_song.src=source;
             }
-            
+            //Add an event to wait for the song is done then fetch next one
+            current_song.addEventListener("ended",proxima);
             pause_button.style.display="inline";
             play_button.style.display="none";
             
