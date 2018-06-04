@@ -1,6 +1,6 @@
 //Given a query search for video url
 
-var server_base="https://serious-vampirebat-74.localtunnel.me/search?tag=";
+var server_base="https://helpless-parrot-21.localtunnel.me/search?tag=";
 function stuff(data){
     return data;
 }
