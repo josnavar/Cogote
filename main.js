@@ -302,7 +302,7 @@ Util.events(document, {
         function shuffle(){
             //Update the shuffled image
             var shuffle_img=document.getElementById("shuffle_img")
-            console.log(shuffle_img).style.webkitFilter;
+            console.log(shuffle_img.style.webkitFilter);
             if (shuffle_img.style.webkitFilter=="invert()"){
                 shuffle_img.style.webkitFilter="";
                 is_shuffled=false;
