@@ -70,6 +70,7 @@ Util.events(document, {
         var backup_url="";
 
 
+
         async function get_raw_data(query){
             var medias=[]
             var query=await process_search(query);
@@ -110,9 +111,11 @@ Util.events(document, {
             pause_button.style.display="inline";
             play_button.style.display="none";
             
+            document.getElementById("result_container").style.display="none";
             return current_song.play();
         }
         function pause(){
+            document.getElementById("result_container").style.display="none";
             current_song.pause();
             play_button.style.display="inline";
             pause_button.style.display="none";
@@ -200,7 +203,7 @@ Util.events(document, {
             var artist_name=song_pack[1];
             var song_url=song_pack[2];
 
-
+            document.getElementById("result_container").style.display="none";
             //Update now playing containers
             document.getElementById("curr_song").innerHTML=document.getElementById("cancion_"+String(song_id)).innerHTML;
             document.getElementById("curr_artist").innerHTML=document.getElementById("artista_"+String(song_id)).innerHTML;
@@ -230,6 +233,7 @@ Util.events(document, {
 
             //Add to local to storage
             var to_storage=[song_playing,artist_playing,url_playing,backup_url];
+            document.getElementById("result_container").style.display="none";
             list_of_songs.push(to_storage);
             playlist_list[curr_playlist]=list_of_songs;
             localStorage.setItem("playlists",JSON.stringify(playlist_list));
