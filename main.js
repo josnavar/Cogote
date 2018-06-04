@@ -68,9 +68,7 @@ Util.events(document, {
 
         var raw_media_links=[];
         var backup_url="";
-
-
-
+        var curr_index=0;
         async function get_raw_data(query){
             var medias=[]
             var query=await process_search(query);
@@ -196,6 +194,7 @@ Util.events(document, {
         }
         function play_tile(e){
             var song_id=e.target.id.split("_")[1];
+            curr_index=song_id;
             var curr_playlist=document.getElementById("playlist_select").value;
             var list_of_songs=playlist_list[curr_playlist];
 
@@ -242,6 +241,55 @@ Util.events(document, {
             document.documentElement.style.setProperty("--num_songs",list_of_songs.length);
             add_song_tiles(song_playing,artist_playing,list_of_songs.length,play_tile);
         }
+        //delta in {1,-1}
+        //curr starts with indexing of 0;
+        function next_song(curr,delta){
+            console.log(curr);
+            console.log(delta);
+            var curr_playlist=document.getElementById("playlist_select").value;
+            var list_of_songs=playlist_list[curr_playlist];
+            var song_id=(curr+delta)%list_of_songs.length;
+
+            var song_pack=list_of_songs[song_id];
+            var song_name=song_pack[0];
+            var artist_name=song_pack[1];
+            var song_url=song_pack[2];
+
+            //Update now playing containers
+            document.getElementById("curr_song").innerHTML=document.getElementById("cancion_"+String(song_id+1)).innerHTML;
+            document.getElementById("curr_artist").innerHTML=document.getElementById("artista_"+String(song_id+1)).innerHTML;
+
+            
+            play(song_url,true).then(function(){
+            }).catch(async function(error){
+                //Request new media link && update localstorage about the new link
+                refreshed_data=await refresh_tile_data(song_pack);
+                play(refreshed_data[2],true);
+                list_of_songs[song_id-1]=refreshed_data;
+                playlist_list[curr_playlist]=list_of_songs;
+                localStorage.setItem("playlists",JSON.stringify(playlist_list));
+            });
+        }
+        function proxima(){
+            var curr_playlist=document.getElementById("playlist_select").value;
+            var list_of_songs=playlist_list[curr_playlist];
+            next_song(curr_index-1,1);
+            curr_index=(curr_index+1)%list_of_songs.length;
+        }
+        function anterior(){
+            var curr_playlist=document.getElementById("playlist_select").value;
+            var list_of_songs=playlist_list[curr_playlist];
+            next_song(curr_index-1,-1);
+            curr_index=(curr_index-1)%list_of_songs.length;
+        }
+        function shuffle(){
+            var curr_playlist=document.getElementById("playlist_select").value;
+            var list_of_songs=playlist_list[curr_playlist];
+            
+            var shuffled_index=Math.floor(Math.random()*list_of_songs.length);
+            next_song(shuffled_index,0);
+            curr_index=shuffled_index;
+        }
 
         load_from_local(play_tile);
 
@@ -255,8 +303,12 @@ Util.events(document, {
 
         //Adding new songs to a playlist 
         Util.one("[id='add']").addEventListener("touchstart",add_to_playlist);
-
         Util.one(".music_entry").addEventListener("click",play_tile);
+
+        //Next and previous
+        Util.one("[id='next']").addEventListener("click",proxima);
+        Util.one("[id='previous']").addEventListener("click",anterior);
+        Util.one("[id='shuffle']").addEventListener("click",shuffle);
 
 	},
 

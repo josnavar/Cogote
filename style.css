@@ -290,6 +290,12 @@ html{
     top:0%;
     grid-row:3;
 }
+[id="shuffle"]{
+    grid-column:1;
+    position:absolute;
+    grid-row:3;
+    left: 4%;
+}
 .img{
     height:10vh;
     width: 10vw;
