@@ -69,6 +69,8 @@ Util.events(document, {
         var raw_media_links=[];
         var backup_url="";
         var curr_index=0;
+        var is_shuffled=false;
+
         async function get_raw_data(query){
             var medias=[]
             var query=await process_search(query);
@@ -248,7 +250,7 @@ Util.events(document, {
             console.log(delta);
             var curr_playlist=document.getElementById("playlist_select").value;
             var list_of_songs=playlist_list[curr_playlist];
-            var song_id=(curr+delta)%list_of_songs.length;
+            var song_id=((curr+delta)%list_of_songs.length+list_of_songs.length)%list_of_songs.length;
 
             var song_pack=list_of_songs[song_id];
             var song_name=song_pack[0];
@@ -273,22 +275,40 @@ Util.events(document, {
         function proxima(){
             var curr_playlist=document.getElementById("playlist_select").value;
             var list_of_songs=playlist_list[curr_playlist];
-            next_song(curr_index-1,1);
-            curr_index=(curr_index+1)%list_of_songs.length;
+            if (is_shuffled){
+                var shuffled_index=Math.floor(Math.random()*list_of_songs.length);
+                curr_index=shuffled_index;
+                next_song(curr_index,0);
+            }
+            else{
+                next_song(curr_index-1,1);
+                curr_index=(curr_index+1)%list_of_songs.length;
+            }
         }
         function anterior(){
             var curr_playlist=document.getElementById("playlist_select").value;
             var list_of_songs=playlist_list[curr_playlist];
-            next_song(curr_index-1,-1);
-            curr_index=(curr_index-1)%list_of_songs.length;
+            if (is_shuffled){
+                var shuffled_index=Math.floor(Math.random()*list_of_songs.length);
+                curr_index=shuffled_index;
+                next_song(curr_index,0);
+            }
+            else{
+                next_song(curr_index-1,-1);
+                curr_index=(curr_index-1)%list_of_songs.length;
+            }
         }
         function shuffle(){
-            var curr_playlist=document.getElementById("playlist_select").value;
-            var list_of_songs=playlist_list[curr_playlist];
-            
-            var shuffled_index=Math.floor(Math.random()*list_of_songs.length);
-            next_song(shuffled_index,0);
-            curr_index=shuffled_index;
+            //Update the shuffled image
+            var shuffle_img=document.getElementById("shuffle_img")
+            if (shuffle_img.style.webkitFilter=="invert()"){
+                shuffle_img.style.webkitFilter="";
+                is_shuffled=false;
+            }
+            else{
+                shuffle_img.style.webkitFilter="invert()";
+                is_shuffled=true;
+            }
         }
 
         load_from_local(play_tile);
