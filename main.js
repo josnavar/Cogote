@@ -106,8 +106,9 @@ Util.events(document, {
             if (check){
                 current_song.src=source;
             }
-            play_button.style.display="none";
+            
             pause_button.style.display="inline";
+            play_button.style.display="none";
             
             return current_song.play();
         }
