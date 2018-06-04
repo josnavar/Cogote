@@ -220,10 +220,7 @@ Util.events(document, {
                 list_of_songs[song_id-1]=refreshed_data;
                 playlist_list[curr_playlist]=list_of_songs;
                 localStorage.setItem("playlists",JSON.stringify(playlist_list));
-            });
-            
-
-            
+            });  
         }
         function add_to_playlist(){
             //Check current selected playlist in selector and add current song into entry.
@@ -268,7 +265,7 @@ Util.events(document, {
                 //Request new media link && update localstorage about the new link
                 refreshed_data=await refresh_tile_data(song_pack);
                 play(refreshed_data[2],true);
-                list_of_songs[song_id-1]=refreshed_data;
+                list_of_songs[song_id]=refreshed_data;
                 playlist_list[curr_playlist]=list_of_songs;
                 localStorage.setItem("playlists",JSON.stringify(playlist_list));
             });

@@ -266,7 +266,6 @@ html{
     position:absolute;
     left:50%;
     top:25%;
-    cursor:pointer;
 }
 [id="play"]{
     grid-column:2;
@@ -274,7 +273,7 @@ html{
     position:absolute;
     left:22%;
     top:0%;
-    cursor:pointer;
+   
 }
 [id="previous"]{
     grid-column:1;
