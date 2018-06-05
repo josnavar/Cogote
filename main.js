@@ -39,6 +39,7 @@ function load_from_local(event_response){
         //Song is a stack of songs based on added time
         song_list=playlist_list["All songs"];
         counter=0;
+        console.log(song_list);
         for (var entry in song_list){
             if (entry!=length){
                 counter+=1;
