@@ -311,16 +311,16 @@ Util.events(document, {
 
         load_from_local(play_tile);
 
-        Util.one("[id='play']").addEventListener("touchstart",play);
-        Util.one("[id='pause']").addEventListener("touchstart",pause);
+        Util.one("[id='play']").addEventListener("click",play);
+        Util.one("[id='pause']").addEventListener("click",pause);
 
-        Util.one("[id='search_bar']").addEventListener("touchstart",set_up_search);
-        Util.one("[id='perform_search']").addEventListener("touchstart",request_search_2);
+        Util.one("[id='search_bar']").addEventListener("click",set_up_search);
+        Util.one("[id='perform_search']").addEventListener("click",request_search_2);
         Util.one("[id='search_query']").addEventListener("keyup",request_search);
-        Util.one("[id='result_container']").addEventListener("touchstart",pull_media);
+        Util.one("[id='result_container']").addEventListener("click",pull_media);
 
         //Adding new songs to a playlist 
-        Util.one("[id='add']").addEventListener("touchstart",add_to_playlist);
+        Util.one("[id='add']").addEventListener("click",add_to_playlist);
         Util.one(".music_entry").addEventListener("click",play_tile);
 
         //Next and previous
@@ -337,7 +337,7 @@ Util.events(document, {
 	"click": function(evt) {
         
     },
-	"touchstart": function(evt) {
+	"click": function(evt) {
 
     },
 	"mousemove": function(evt) {
