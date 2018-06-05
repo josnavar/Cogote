@@ -40,10 +40,10 @@ function load_from_local(event_response){
         song_list=playlist_list["All songs"];
         counter=0;
         for (var entry in song_list){
+            counter+=1;
             var song=song_list[entry][0];
             var artist=song_list[entry][1];
             var url=song_list[entry][2];
-            counter+=1;
             add_song_tiles(song,artist,counter,event_response);
 
 
