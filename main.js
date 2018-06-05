@@ -34,6 +34,7 @@ function load_from_local(event_response){
     //Populate list of songs into playlist form localstorage
     playlist_list=localStorage.getItem("playlists");
     if (playlist_list!=null){
+        console.log("null bitch");
         playlist_list=JSON.parse(playlist_list);
 
         //Song is a stack of songs based on added time
