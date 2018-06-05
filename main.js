@@ -39,17 +39,15 @@ function load_from_local(event_response){
         //Song is a stack of songs based on added time
         song_list=playlist_list["All songs"];
         counter=0;
-        console.log(song_list);
         for (var entry in song_list){
-            if (entry!=length){
-                console.log("$");
-                console.log(entry);
-                counter+=1;
-                var song=song_list[entry][0];
-                var artist=song_list[entry][1];
-                var url=song_list[entry][2];
-                add_song_tiles(song,artist,counter,event_response);
+            if (song_list.length==0){
+                break;
             }
+            counter+=1;
+            var song=song_list[entry][0];
+            var artist=song_list[entry][1];
+            var url=song_list[entry][2];
+            add_song_tiles(song,artist,counter,event_response);
 
 
         document.documentElement.style.setProperty("--num_songs",song_list.length);
