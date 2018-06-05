@@ -244,8 +244,6 @@ Util.events(document, {
         //delta in {1,-1}
         //curr starts with indexing of 0;
         function next_song(curr,delta){
-            console.log(curr);
-            console.log(delta);
             var curr_playlist=document.getElementById("playlist_select").value;
             var list_of_songs=playlist_list[curr_playlist];
             var song_id=((curr+delta)%list_of_songs.length+list_of_songs.length)%list_of_songs.length;
@@ -308,6 +306,11 @@ Util.events(document, {
                 is_shuffled=true;
             }
         }
+        function delete_song_tile(e){
+            console.log(e);
+            var song_id=e.target.id.split("_")[1];
+            console.log(song_id);
+        }
 
         load_from_local(play_tile);
 
@@ -327,6 +330,9 @@ Util.events(document, {
         Util.one("[id='next']").addEventListener("click",proxima);
         Util.one("[id='previous']").addEventListener("click",anterior);
         Util.one("[id='shuffle']").addEventListener("click",shuffle);
+
+        //Delete song from current playlist
+        Util.one(".del_button").addEventListener("click",delete_song_tile);
 
 	},
 
