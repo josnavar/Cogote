@@ -5,7 +5,7 @@ var music_list=document.getElementById("music_list");
 music_list.removeChild(dummy_tile);
 
 
-function add_song_tiles(song,artist,i,event_response){
+function add_song_tiles(song,artist,i,event_response,delete_event){
     var curr_tile=mock_tile.cloneNode(true);
 
     curr_tile.id="music_entry_"+String(i);
@@ -20,7 +20,9 @@ function add_song_tiles(song,artist,i,event_response){
     song_node.id="cancion_"+String(i);
     song_node.innerHTML=artist;
     del_node.id="del_"+String(i);
+    del_node.addEventListener("click",delete_event);
     add_node.id="add_"+String(i);
+
 
     //Update grid location
     curr_tile.style.gridRow=i;
@@ -30,11 +32,10 @@ function add_song_tiles(song,artist,i,event_response){
     //curr_tile.addEventListener("click",event_response);
     music_list.appendChild(curr_tile);
 }
-function load_from_local(event_response){
+function load_from_local(event_response,delete_event){
     //Populate list of songs into playlist form localstorage
     playlist_list=localStorage.getItem("playlists");
     if (playlist_list!=null){
-        console.log("null bitch");
         playlist_list=JSON.parse(playlist_list);
 
         //Song is a stack of songs based on added time
@@ -44,12 +45,11 @@ function load_from_local(event_response){
             if (song_list[entry].length==null){
                 continue;
             }
-            console.log(entry);
             counter+=1;
             var song=song_list[entry][0];
             var artist=song_list[entry][1];
             var url=song_list[entry][2];
-            add_song_tiles(song,artist,counter,event_response);
+            add_song_tiles(song,artist,counter,event_response,delete_event);
 
 
         document.documentElement.style.setProperty("--num_songs",song_list.length);
@@ -253,17 +253,11 @@ Util.events(document, {
         //delta in {1,-1}
         //curr starts with indexing of 0;
         function next_song(curr,delta){
-            console.log("current")
-            console.log(curr);
-            console.log("delta");
-            console.log(delta);
             var curr_playlist=document.getElementById("playlist_select").value;
             var list_of_songs=playlist_list[curr_playlist];
             var song_id=((curr+delta)%list_of_songs.length+list_of_songs.length)%list_of_songs.length;
 
             var song_pack=list_of_songs[song_id];
-            console.log("song_pack");
-            console.log(song_pack);
             var song_name=song_pack[0];
             var artist_name=song_pack[1];
             var song_url=song_pack[2];
@@ -284,7 +278,6 @@ Util.events(document, {
             });
         }
         function proxima(){
-            console.log("here???");
             var curr_playlist=document.getElementById("playlist_select").value;
             var list_of_songs=playlist_list[curr_playlist];
             if (is_shuffled){
@@ -336,10 +329,16 @@ Util.events(document, {
                 //We're in a firefox device
                 var song_id=e.originalTarget.id.split("_")[1];        
             }
-            
+            var curr_playlist=document.getElementById("playlist_select").value;
+            var list_of_songs=playlist_list[curr_playlist];
+            delete list_of_songs[song_id];
+            list_of_songs.length-=1;
+            playlist_list[curr_playlist]=list_of_songs;
+            localStorage.setItem("playlists",JSON.stringify(playlist_list));
+
         }
 
-        load_from_local(play_tile);
+        load_from_local(play_tile,delete_song_tile);
 
         Util.one("[id='play']").addEventListener("click",play);
         Util.one("[id='pause']").addEventListener("click",pause);
@@ -360,7 +359,7 @@ Util.events(document, {
         Util.one("[id='shuffle']").addEventListener("click",shuffle);
 
         //Delete song from current playlist
-        //Util.one(".del_button").addEventListener("click",delete_song_tile);
+        Util.one(".del_button").addEventListener("click",delete_song_tile);
 
 	},
 
