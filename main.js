@@ -236,7 +236,6 @@ Util.events(document, {
             var to_storage=[song_playing,artist_playing,url_playing,backup_url];
             document.getElementById("result_container").style.display="none";
             
-            console.log(to_storage);
             console.log(list_of_songs.length);
             list_of_songs[list_of_songs.length]=to_storage;
             list_of_songs.length+=1;
@@ -249,11 +248,17 @@ Util.events(document, {
         //delta in {1,-1}
         //curr starts with indexing of 0;
         function next_song(curr,delta){
+            console.log("current")
+            console.log(curr);
+            console.log("delta");
+            console.log(delta);
             var curr_playlist=document.getElementById("playlist_select").value;
             var list_of_songs=playlist_list[curr_playlist];
             var song_id=((curr+delta)%list_of_songs.length+list_of_songs.length)%list_of_songs.length;
 
             var song_pack=list_of_songs[song_id];
+            console.log("song_pack");
+            console.log(song_pack);
             var song_name=song_pack[0];
             var artist_name=song_pack[1];
             var song_url=song_pack[2];
