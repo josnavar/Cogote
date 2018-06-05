@@ -1,6 +1,6 @@
 //Given a query search for video url
 
-var server_base="https://unlucky-horse-67.localtunnel.me/search?tag=";
+var server_base="https://dale-dale-1.localtunnel.me/search?tag=";
 function stuff(data){
     return data;
 }
