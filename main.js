@@ -346,7 +346,7 @@ Util.events(document, {
         Util.one("[id='shuffle']").addEventListener("click",shuffle);
 
         //Delete song from current playlist
-        Util.one(".del_button").addEventListener("click",delete_song_tile);
+        //Util.one(".del_button").addEventListener("click",delete_song_tile);
 
 	},
 
