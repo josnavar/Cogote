@@ -52,7 +52,7 @@ function load_from_local(event_response){
     }
     else{
         //Create a new entry.
-        var all_songs={};
+        var all_songs={length:0};
         var dict_of_playlists={};
         dict_of_playlists["All songs"]=all_songs
         playlist_list=dict_of_playlists;
@@ -227,7 +227,7 @@ Util.events(document, {
             //Check current selected playlist in selector and add current song into entry.
             var curr_playlist=document.getElementById("playlist_select").value;
             var list_of_songs=playlist_list[curr_playlist];
-            console.log(list_of_songs);
+            
             var song_playing=document.getElementById("curr_song").innerHTML;
             var artist_playing=document.getElementById("curr_artist").innerHTML;
             var url_playing=current_song.src;
@@ -235,7 +235,8 @@ Util.events(document, {
             //Add to local to storage
             var to_storage=[song_playing,artist_playing,url_playing,backup_url];
             document.getElementById("result_container").style.display="none";
-            //list_of_songs.push(to_storage);
+            
+            list_of_songs.length+=1;
             list_of_songs[list_of_songs.length]=to_storage;
             playlist_list[curr_playlist]=list_of_songs;
             localStorage.setItem("playlists",JSON.stringify(playlist_list));
