@@ -41,6 +41,8 @@ function load_from_local(event_response){
         counter=0;
         console.log(song_list);
         for (var entry in song_list){
+            console.log("$");
+            console.log(entry);
             if (entry!=length){
                 counter+=1;
                 var song=song_list[entry][0];
