@@ -41,7 +41,7 @@ function load_from_local(event_response){
         song_list=playlist_list["All songs"];
         counter=0;
         for (var entry in song_list){
-            if ("length" ==song_list){
+            if (song_list[entry].length==null){
                 continue;
             }
             console.log(entry);
