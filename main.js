@@ -38,13 +38,12 @@ function load_from_local(event_response){
 
         //Song is a stack of songs based on added time
         song_list=playlist_list["All songs"];
-        var counter=0;
+        counter=0;
         for (var entry in song_list){
-            counter+=1;
             var song=song_list[entry][0];
             var artist=song_list[entry][1];
             var url=song_list[entry][2];
-
+            counter+=1;
             add_song_tiles(song,artist,counter,event_response);
 
 
@@ -53,7 +52,7 @@ function load_from_local(event_response){
     }
     else{
         //Create a new entry.
-        var all_songs=[];
+        var all_songs={};
         var dict_of_playlists={};
         dict_of_playlists["All songs"]=all_songs
         playlist_list=dict_of_playlists;
@@ -236,7 +235,8 @@ Util.events(document, {
             //Add to local to storage
             var to_storage=[song_playing,artist_playing,url_playing,backup_url];
             document.getElementById("result_container").style.display="none";
-            list_of_songs.push(to_storage);
+            //list_of_songs.push(to_storage);
+            list_of_songs[list_of_songs.length]=to_storage;
             playlist_list[curr_playlist]=list_of_songs;
             localStorage.setItem("playlists",JSON.stringify(playlist_list));
 
