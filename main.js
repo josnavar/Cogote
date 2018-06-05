@@ -25,7 +25,9 @@ function add_song_tiles(song,artist,i,event_response){
     //Update grid location
     curr_tile.style.gridRow=i;
     //Add new listeners
-    curr_tile.addEventListener("click",event_response);
+    artist_node.addEventListener("click",event_response);
+    song_node.addEventListener("click",event_response);
+    //curr_tile.addEventListener("click",event_response);
     music_list.appendChild(curr_tile);
 }
 function load_from_local(event_response){
@@ -51,7 +53,7 @@ function load_from_local(event_response){
     }
     else{
         //Create a new entry.
-        var all_songs=[]
+        var all_songs=[];
         var dict_of_playlists={};
         dict_of_playlists["All songs"]=all_songs
         playlist_list=dict_of_playlists;
@@ -307,9 +309,20 @@ Util.events(document, {
             }
         }
         function delete_song_tile(e){
-            console.log(e);
-            var song_id=e.target.id.split("_")[1];
-            console.log(song_id);
+            if (e.path!=null){
+                //We're in a chrome device
+                var pot_1=e.path[0].id;
+                if (pot_1.split("_").length>1){
+                    var song_id=pot_1.split("_")[1]
+                }else{
+                    var song_id=e.path[1].id.split("_")[1];
+                }
+            }
+            else{
+                //We're in a firefox device
+                var song_id=e.originalTarget.id.split("_")[1];        
+            }
+            
         }
 
         load_from_local(play_tile);
@@ -324,7 +337,8 @@ Util.events(document, {
 
         //Adding new songs to a playlist 
         Util.one("[id='add']").addEventListener("click",add_to_playlist);
-        Util.one(".music_entry").addEventListener("click",play_tile);
+        Util.one(".artist_name").addEventListener("click",play_tile);
+        Util.one(".song_name").addEventListener("click",play_tile);
 
         //Next and previous
         Util.one("[id='next']").addEventListener("click",proxima);
