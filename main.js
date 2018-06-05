@@ -260,6 +260,7 @@ Util.events(document, {
             var list_of_songs=playlist_list[curr_playlist];
             var song_id=((curr+delta)%list_of_songs.length+list_of_songs.length)%list_of_songs.length;
 
+            console.log(song_id);
             var song_pack=list_of_songs[song_id];
             var song_name=song_pack[0];
             var artist_name=song_pack[1];

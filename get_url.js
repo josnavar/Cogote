@@ -99,7 +99,7 @@ function preHTML(item){
     return [raw_url,raw_sig,raw_player,raw_clean];
 }
 
-var base_url="https://dale-dale-1.localtunnel.me/query?url=";
+var base_url="https://https://neat-swan-73.localtunnel.me/query?url=";
 //CORS BLOCKS HTML CONNECTIONS, connect to server and expect raw html to post 
 function get_html(url,callback){
     return new Promise(function (resolve,reject){
