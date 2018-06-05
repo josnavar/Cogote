@@ -279,6 +279,7 @@ Util.events(document, {
             });
         }
         function proxima(){
+            console.log("here???");
             var curr_playlist=document.getElementById("playlist_select").value;
             var list_of_songs=playlist_list[curr_playlist];
             if (is_shuffled){
