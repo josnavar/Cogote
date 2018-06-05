@@ -227,7 +227,7 @@ Util.events(document, {
             //Check current selected playlist in selector and add current song into entry.
             var curr_playlist=document.getElementById("playlist_select").value;
             var list_of_songs=playlist_list[curr_playlist];
-
+            console.log(list_of_songs);
             var song_playing=document.getElementById("curr_song").innerHTML;
             var artist_playing=document.getElementById("curr_artist").innerHTML;
             var url_playing=current_song.src;
