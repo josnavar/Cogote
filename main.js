@@ -236,8 +236,9 @@ Util.events(document, {
             var to_storage=[song_playing,artist_playing,url_playing,backup_url];
             document.getElementById("result_container").style.display="none";
             
-            list_of_songs.length+=1;
+            console.log(list_of_songs.length);
             list_of_songs[list_of_songs.length]=to_storage;
+            list_of_songs.length+=1;
             playlist_list[curr_playlist]=list_of_songs;
             localStorage.setItem("playlists",JSON.stringify(playlist_list));
 
