@@ -23,7 +23,6 @@ function add_song_tiles(song,artist,i,event_response,delete_event){
     del_node.addEventListener("click",delete_event);
     add_node.id="add_"+String(i);
 
-
     //Update grid location
     curr_tile.style.gridRow=i;
     //Add new listeners
@@ -31,6 +30,10 @@ function add_song_tiles(song,artist,i,event_response,delete_event){
     song_node.addEventListener("click",event_response);
     //curr_tile.addEventListener("click",event_response);
     music_list.appendChild(curr_tile);
+}
+function delete_song(index){
+    var curr_entry=document.getElementById("music_entry_"+String(index));
+    music_list.removeChild(curr_entry);
 }
 function load_from_local(event_response,delete_event){
     //Populate list of songs into playlist form localstorage
@@ -248,7 +251,7 @@ Util.events(document, {
             localStorage.setItem("playlists",JSON.stringify(playlist_list));
 
             document.documentElement.style.setProperty("--num_songs",list_of_songs.length);
-            add_song_tiles(song_playing,artist_playing,list_of_songs.length,play_tile);
+            add_song_tiles(song_playing,artist_playing,list_of_songs.length,play_tile,delete_song_tile);
         }
         //delta in {1,-1}
         //curr starts with indexing of 0;
@@ -316,6 +319,7 @@ Util.events(document, {
             }
         }
         function delete_song_tile(e){
+            console.log("deleting")
             if (e.path!=null){
                 //We're in a chrome device
                 var pot_1=e.path[0].id;
@@ -331,10 +335,11 @@ Util.events(document, {
             }
             var curr_playlist=document.getElementById("playlist_select").value;
             var list_of_songs=playlist_list[curr_playlist];
-            delete list_of_songs[song_id];
+            delete list_of_songs[song_id-1];
             list_of_songs.length-=1;
             playlist_list[curr_playlist]=list_of_songs;
             localStorage.setItem("playlists",JSON.stringify(playlist_list));
+            delete_song(song_id);
 
         }
 
