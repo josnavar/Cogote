@@ -44,6 +44,7 @@ function load_from_local(event_response){
             if ("length" in song_list){
                 continue;
             }
+            console.log(entry);
             counter+=1;
             var song=song_list[entry][0];
             var artist=song_list[entry][1];
