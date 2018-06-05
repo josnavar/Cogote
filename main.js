@@ -183,6 +183,7 @@ Util.events(document, {
             play(post_media_link[0],true);
 
             
+            console.log(song_id);
             //Update now playing containers
             document.getElementById("curr_song").innerHTML=document.getElementById("song_"+String(song_id)).innerHTML;
             document.getElementById("curr_artist").innerHTML=document.getElementById("artist_"+String(song_id)).innerHTML;
@@ -207,6 +208,7 @@ Util.events(document, {
             var artist_name=song_pack[1];
             var song_url=song_pack[2];
 
+            console.log(song_id);
             document.getElementById("result_container").style.display="none";
             //Update now playing containers
             document.getElementById("curr_song").innerHTML=document.getElementById("cancion_"+String(song_id)).innerHTML;
