@@ -99,7 +99,7 @@ function preHTML(item){
     return [raw_url,raw_sig,raw_player,raw_clean];
 }
 
-var base_url="https://good-lion-27.localtunnel.me/query?url=";
+var base_url="https://happy-jellyfish-53.localtunnel.me/query?url=";
 //CORS BLOCKS HTML CONNECTIONS, connect to server and expect raw html to post 
 function get_html(url,callback){
     return new Promise(function (resolve,reject){
