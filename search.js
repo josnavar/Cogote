@@ -1,6 +1,6 @@
 //Given a query search for video url
 
-var server_base="https://happy-jellyfish-53.localtunnel.me/search?tag=";
+var server_base="https://ec2-18-220-236-36.us-east-2.compute.amazonaws.com/search?tag=";
 function stuff(data){
     return data;
 }
