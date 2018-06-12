@@ -71,7 +71,7 @@ function get_stuff(de){
     return all_fns;    
 }
 
-var js_url="https://ec2-18-220-236-36.us-east-2.compute.amazonaws.com/js_query?url=";
+var js_url="http://18.220.236.36:8000/js_query?url=";
 function get_js_player(url,callback,signature){
     return new Promise(function (resolve,reject){
         if (js_player==null){

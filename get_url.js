@@ -99,7 +99,7 @@ function preHTML(item){
     return [raw_url,raw_sig,raw_player,raw_clean];
 }
 
-var base_url="https://ec2-18-220-236-36.us-east-2.compute.amazonaws.com/query?url=";
+var base_url="http://18.220.236.36:8000/query?url=";
 //CORS BLOCKS HTML CONNECTIONS, connect to server and expect raw html to post 
 function get_html(url,callback){
     return new Promise(function (resolve,reject){
