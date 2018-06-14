@@ -40,12 +40,12 @@ function load_from_local(event_response,delete_event){
     playlist_list=localStorage.getItem("playlists");
     if (playlist_list!=null){
         playlist_list=JSON.parse(playlist_list);
-
         //Song is a stack of songs based on added time
         song_list=playlist_list["All songs"];
         counter=0;
-        for (var entry in song_list){
-            if (song_list[entry].length==null){
+        for (var entry=0;entry<song_list.length;entry++){
+            
+            if (song_list[entry]==null || song_list[entry].length==null){
                 continue;
             }
             counter+=1;
@@ -80,6 +80,8 @@ Util.events(document, {
         var curr_index=0;
         var is_shuffled=false;
 
+        var guessed_links=[null,null];
+
         async function get_raw_data(query){
             var medias=[]
             var query=await process_search(query);
@@ -94,6 +96,8 @@ Util.events(document, {
             var name=query[1][i];
             //[decoded_url,raw_signature,raw_player]
             var data= await collect_raw(url1);
+            console.log ("THIS IS QUERIED MEDIA URL");
+            console.log(data);
             //Check if you need to unscramble
             if (data[3]!=""){
                 var unscrambled_sig=data[3];
@@ -102,10 +106,8 @@ Util.events(document, {
                 var unscrambled_sig=await unscramble(data[1],data[2]);
             }
             var media_url=data[0]+"&signature="+unscrambled_sig;
-            console.log ("THIS IS QUERIED MEDIA URL");
-            console.log(media_url);
-            console.log (name);
-            console.log("###########################");
+            
+            
             return [media_url,name]; 
         }
         async function play(source,check){
@@ -140,7 +142,7 @@ Util.events(document, {
             
         }
         async function request_search(e){
-            if (e.keyCode==13){
+            if (e.which==13){
                 var query=document.getElementById("search_query").value;
 
                 var raw_data=await get_raw_data(query);
@@ -156,40 +158,47 @@ Util.events(document, {
                         document.getElementById("song_"+String(index+1)).innerHTML=arr[0];
                         document.getElementById("artist_"+String(index+1)).innerHTML="Artist not Found";
                     }
-                raw_media_links=raw_data[0];
-                document.getElementById("result_container").style.display="grid";
                 }
+                raw_media_links=raw_data[0];
+                guess_media();
+                document.getElementById("result_container").style.display="grid";
+                //Hack hide the keyboard by changing focus away from input
+                document.getElementById("search_query").blur();
             }
         }
-        async function request_search_2(e){
-            var query=document.getElementById("search_query").value;
-
-            var raw_data=await get_raw_data(query);
-            var url_names=raw_data[1];
-            for (var index=0;index<4;index++){
-                var name=url_names[index];
-                var arr=name.split("-");
-                if (arr.length>1){
-                    document.getElementById("song_"+String(index+1)).innerHTML=arr[1];
-                    document.getElementById("artist_"+String(index+1)).innerHTML=arr[0]
-                }
-                else{
-                    document.getElementById("song_"+String(index+1)).innerHTML=arr[0];
-                    document.getElementById("artist_"+String(index+1)).innerHTML="Artist not Found";
-                }
-            raw_media_links=raw_data[0];
-            document.getElementById("result_container").style.display="grid";
-            }
+        async function guess_media(){
+            //build media link for the first 2 results.
+            build_media_link(raw_media_links,0).then(function(value){
+                guessed_links[0]=value;
+            });
+            build_media_link(raw_media_links,1).then(function(value){
+                guessed_links[1]=value;
+            });
         }
         async function pull_media(e){
             var song_id=e.target.id.split("_")[1];
             var song_id=song_id[song_id.length-1];
-            
 
-            var post_media_link=await build_media_link(raw_media_links,song_id-1);
             document.getElementById("result_container").style.display="none";
+            document.getElementById("curr_song").innerHTML="Loading Song...";
+            document.getElementById("curr_artist").innerHTML="";
+            //Check if a guess finished and matches with request
+            something=false;
+            if (song_id==1 && guessed_links[0]!=null){
+                console.log("cache 1");
+                var post_media_link=guessed_links[0];
+                something=true;
+            }
+            if (song_id==2 && guessed_links[1]!=null){
+                console.log("cache_2");
+                var post_media_link=guessed_links[1];   
+                something=true;              
+            }
+            if (!something){
+                var post_media_link=await build_media_link(raw_media_links,song_id-1);
+            }
             play(post_media_link[0],true);
-
+            guessed_links=[null,null];
             
             //Update now playing containers
             document.getElementById("curr_song").innerHTML=document.getElementById("song_"+String(song_id)).innerHTML;
@@ -350,23 +359,23 @@ Util.events(document, {
         Util.one("[id='pause']").addEventListener("click",pause);
 
         Util.one("[id='search_bar']").addEventListener("click",set_up_search);
-        Util.one("[id='perform_search']").addEventListener("click",request_search_2);
-        Util.one("[id='search_query']").addEventListener("keyup",request_search);
+        Util.one("[id='search_query']").addEventListener("keydown",request_search);
         Util.one("[id='result_container']").addEventListener("click",pull_media);
 
         //Adding new songs to a playlist 
         Util.one("[id='add']").addEventListener("click",add_to_playlist);
-        Util.one(".artist_name").addEventListener("click",play_tile);
-        Util.one(".song_name").addEventListener("click",play_tile);
-
+        try{
+            Util.one(".artist_name").addEventListener("click",play_tile);
+            Util.one(".song_name").addEventListener("click",play_tile);
+            Util.one(".del_button").addEventListener("click",delete_song_tile);
+        }
+        catch (err){
+            console.log("Playlists are most likely empty");
+        }
         //Next and previous
         Util.one("[id='next']").addEventListener("click",proxima);
         Util.one("[id='previous']").addEventListener("click",anterior);
         Util.one("[id='shuffle']").addEventListener("click",shuffle);
-
-        //Delete song from current playlist
-        Util.one(".del_button").addEventListener("click",delete_song_tile);
-
 	},
 
 	// Keyboard events arrive here

@@ -1,4 +1,5 @@
 var js_player=null;
+var js_player_url=null;
 
 function grab_func(index,source,target){
     var whole_func=``;
@@ -72,37 +73,51 @@ function get_stuff(de){
 }
 
 var js_url="http://18.220.236.36:8000/js_query?url=";
-function get_js_player(url,callback,signature){
+// function get_js_player(url,callback,signature){
+//     return new Promise(function (resolve,reject){
+//         if (js_player==null){
+//             var req = new XMLHttpRequest();
+//             req.open("GET",url,true);
+//             req.onreadystatechange = function(){
+//                 if (req.readyState==4 && req.status==200){
+//                     js_player=req.responseText;
+//                     var all_fns=callback(req.responseText);
+//                     var eqn=new Function("a",all_fns);
+//                     resolve((eqn(signature)));
+//                 }
+//             }
+//             req.send(null);
+//         }
+//         else{
+//             console.log("its cached");
+//             //Player is cached, access it
+//             var all_fns=callback(js_player);
+//             var eqn=new Function("a",all_fns);
+//             resolve((eqn(signature)));
+//         }
+//     });
+// }
+function get_js_player(url){
     return new Promise(function (resolve,reject){
         if (js_player==null){
             var req = new XMLHttpRequest();
             req.open("GET",url,true);
             req.onreadystatechange = function(){
                 if (req.readyState==4 && req.status==200){
-                    js_player=req.responseText;
-                    var all_fns=callback(req.responseText);
-                    var eqn=new Function("a",all_fns);
-                    resolve((eqn(signature)));
+                    post_sig=req.responseText;
+                    resolve(post_sig);
                 }
             }
             req.send(null);
         }
-        else{
-            console.log("its cached");
-            //Player is cached, access it
-            var all_fns=callback(js_player);
-            var eqn=new Function("a",all_fns);
-            resolve((eqn(signature)));
-        }
-
     });
-
 }
 function get_clean(stuff){
     return stuff
 }
 async function unscramble(raw_signature,player){
-    var full_url=js_url+player;
-    var clean= await get_js_player(full_url,get_stuff,raw_signature).then(get_clean);
+    var full_url=js_url+player+"&sig="+raw_signature;
+    //var clean= await get_js_player(full_url,get_stuff,raw_signature).then(get_clean);
+    var clean= await get_js_player(full_url).then(get_clean);
     return clean 
 }

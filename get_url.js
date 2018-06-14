@@ -56,6 +56,7 @@ function preHTML(item){
     var reg3=new RegExp(player_tag);
 
     var result=reg1.exec(item)[1];
+    
 
     //Need to split based on commas 
     var comma_arr=result.split(",");
@@ -101,13 +102,25 @@ function preHTML(item){
 
 var base_url="http://18.220.236.36:8000/query?url=";
 //CORS BLOCKS HTML CONNECTIONS, connect to server and expect raw html to post 
-function get_html(url,callback){
+// function get_html(url,callback){
+//     return new Promise(function (resolve,reject){
+//         var req = new XMLHttpRequest();
+//         req.open("GET",url,true);
+//         req.onreadystatechange = function(){
+//             if (req.readyState==4 && req.status==200){
+//                 resolve(callback(req.responseText));
+//             }
+//         }
+//         req.send(null);
+//     });
+// }
+function get_html(url){
     return new Promise(function (resolve,reject){
         var req = new XMLHttpRequest();
         req.open("GET",url,true);
         req.onreadystatechange = function(){
             if (req.readyState==4 && req.status==200){
-                resolve(callback(req.responseText));
+                resolve(req.responseText);
             }
         }
         req.send(null);
@@ -118,6 +131,9 @@ function stuff(elt){
 }
 async function collect_raw(url){
     var full_url=base_url+url;
-    var data=await get_html(full_url,preHTML).then(stuff);
+    //var data=await get_html(full_url,preHTML).then(stuff);
+    var data=await get_html(full_url).then(stuff);
+    data=JSON.parse(data)
+    console.log(data)
     return data; 
 }

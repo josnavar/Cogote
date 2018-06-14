@@ -6,7 +6,7 @@
 body{
     display: grid;
     grid-template-rows: 15% 15% 25% 25% 20%;
-    grid-template-columns: 85% 17%;
+    grid-template-columns: 100vw;
     width:98vw;
     height:100%;
     margin:0px;
@@ -21,17 +21,14 @@ html{
     grid-row:1;
     grid-column:1;
     height:100%;
-    border-style:solid;
-    border-color: black;
-    border-width:1px;
-    background-color:#D7BFA7;
     cursor:pointer;
 }
 [id="search_query"]{
     color:gray;
     font-size: 5vh;
-    height:95%;
+    height:100%;
     width:100%;
+    border: 0px;
     font-family: 'PT Sans', sans-serif;
 }
 [id="perform_search"]{
@@ -42,7 +39,6 @@ html{
     border:0px;
     padding-bottom:0px;
     padding-left:0px;
-    cursor:pointer;
 }
 
 
@@ -154,10 +150,9 @@ html{
     grid-template-rows: 50% 50%;
     grid-template-columns: 100% 20% 20%;
     border-width: 1px;
-    background-color: grey;
+    background-color: #89a9bd;
     border-color: white;
     height: 100%;
-    overflow-x:visible;
     cursor:pointer;
 }
 .artist_name{
@@ -179,7 +174,8 @@ html{
     font-family: 'PT Sans', sans-serif;
     text-align:center;
     font-weight: bold;
-    font-size:3vh;
+    font-size:3.1vh;
+    overflow-x:hidden;
     -webkit-margin-before:0px;
     -webkit-margin-start: 0px;
     -webkit-margin-after:0px;
@@ -213,7 +209,7 @@ html{
     grid-template-columns: 27.5% 45% 27.5%;
     grid-template-rows: 25% 20% 55%;
     align-items:center;
-    background-color:var(--background_color);
+    background-color:var(--search_color);
 }
 
 [id="curr_song"]{
@@ -257,6 +253,7 @@ html{
     background-color:transparent;
     
 }
+
 /* .control_button:active{
     filter: opacity(0);
 } */

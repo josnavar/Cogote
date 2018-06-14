@@ -18,20 +18,15 @@ Music page
 
 <!-- Constructible EventTarget polyfill — Only Chrome 64+ supports constructible EventTarget objects natively -->
 <script src="https://unpkg.com/event-target@latest/min.js"></script>
-</head>      
+</head> 
+<script src="util.js"></script>     
 <script src="decipher.js"></script>
 <script src="get_url.js"></script>
 <script src="search.js"></script>
 
-
-<script src="util.js"></script>
-<body>
 <div id="search_bar">
-    <input id="search_query" type="text" value="Search...">
+    <input id="search_query" onsubmit="javascript:return false;" type="search" autocomplete="off" value="Search...">
 </div>
-<button type="button" id="perform_search">
-    <img src="search_button.png" class="img">
-</button>
 
 <div id="result_container">
     <div id="result_1" class="result">
@@ -55,7 +50,7 @@ Music page
     <select id="playlist_select">
         <option value="All songs" class="options">All songs</option>
     </select>
-    <p id="playlist_title">Playlists</p>
+    <p id="playlist_title">Cogote</p>
 </div>
 <div id="music_list">
     <div id="music_entry_0" class="music_entry">
